@@ -1,0 +1,154 @@
+@use "../../../styles/mixins" as *;
+
+.footer {
+  background: var(--asr-bg);
+  color: var(--asr-text);
+  padding-top: 24px;
+
+  &__line {
+    height: 1px;
+    background: var(--asr-red);
+    opacity: 0.7;
+  }
+
+  &__inner {
+    @include container;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 32px;
+    padding-block: 40px;
+  }
+
+  &__brand {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  &__logo {
+    display: block;
+    width: 100%;
+    max-width: 220px;
+    height: auto;
+  }
+
+  &__column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    h3 {
+      font-family: var(--asr-font-display);
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin: 0;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--asr-red);
+      align-self: flex-start;
+      padding-right: 24px;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    li {
+      display: flex;
+      flex-direction: column;
+    }
+
+    strong {
+      font-size: 0.85rem;
+    }
+
+    span,
+    p {
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--asr-text-muted);
+    font-size: 0.85rem;
+
+    ui-icon {
+      color: var(--asr-red);
+    }
+
+    &:hover {
+      color: var(--asr-text);
+    }
+  }
+
+  &__social {
+    display: flex;
+    gap: 12px;
+    margin-top: 6px;
+    color: var(--asr-text);
+
+    a:hover {
+      color: var(--asr-red);
+    }
+  }
+
+  &__bottom {
+    @include container;
+    border-top: 1px solid var(--asr-border);
+    padding-block: 20px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  &__legal {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    a {
+      color: var(--asr-text-muted);
+      transition: color var(--asr-transition);
+
+      &:hover {
+        color: var(--asr-red);
+      }
+    }
+  }
+
+  &__legal-divider {
+    color: var(--asr-border-strong);
+  }
+
+  @include breakpoint(md) {
+    &__inner {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+  }
+
+  @include breakpoint(sm) {
+    &__inner {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding-block: 32px;
+    }
+
+    &__bottom {
+      flex-direction: column;
+      text-align: center;
+      gap: 10px;
+    }
+  }
+}

@@ -1,0 +1,32 @@
+<header class="header">
+  <div class="header__inner">
+    <a class="header__logo" href="#hero" (click)="goTo('hero', $event)" aria-label="ASR Performance & Tuning">
+      <img src="assets/asr-logo.jpg" alt="ASR Performance & Tuning LLC" />
+    </a>
+
+    <nav class="header__nav" aria-label="Primary">
+      <a
+        *ngFor="let link of content.navLinks"
+        [href]="'#' + link.id"
+        (click)="goTo(link.id, $event)"
+        [class.is-active]="(active$ | async) === link.id"
+      >
+        {{ link.label }}
+      </a>
+    </nav>
+
+    <div class="header__social">
+      <a [href]="content.contact.social.instagram" target="_blank" rel="noopener" aria-label="Instagram">
+        <ui-icon name="instagram" [size]="18"></ui-icon>
+      </a>
+      <span class="header__divider"></span>
+      <a [href]="content.contact.social.facebook" target="_blank" rel="noopener" aria-label="Facebook">
+        <ui-icon name="facebook" [size]="18"></ui-icon>
+      </a>
+      <a [href]="'tel:' + content.contact.phone" aria-label="Call us">
+        <ui-icon name="phone" [size]="18"></ui-icon>
+      </a>
+    </div>
+  </div>
+  <div class="header__line"></div>
+</header>

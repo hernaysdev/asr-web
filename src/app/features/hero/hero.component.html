@@ -1,0 +1,29 @@
+<section id="hero" class="hero">
+  <div class="hero__bg"></div>
+  <div class="hero__inner">
+    <div class="hero__content">
+      <h1 class="hero__title display">
+        <span>All Set</span>
+        <span class="accent">Racing</span>
+      </h1>
+      <span class="hero__divider"></span>
+      <p class="hero__subtitle">Precision. Power. Reliability.</p>
+      <p class="hero__copy text-muted">
+        Specializing in dyno tuning, performance upgrades, fabrication, diagnostics, and custom automotive solutions.
+      </p>
+      <div class="hero__cta">
+        <ui-button variant="primary" (click)="goTo('services')">Our Services</ui-button>
+        <ui-button variant="outline" (click)="goTo('contact')">Schedule an Appointment</ui-button>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__strip">
+    <div class="hero__strip-inner">
+      <div class="hero__chip" *ngFor="let svc of content.heroServices">
+        <ui-icon [name]="svc.icon" [size]="28"></ui-icon>
+        <span>{{ svc.title }}</span>
+      </div>
+    </div>
+  </div>
+</section>

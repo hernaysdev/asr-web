@@ -1,0 +1,163 @@
+@use "../../../styles/mixins" as *;
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  color: var(--asr-text);
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.6) 50%, rgba(10, 10, 10, 0.85) 100%),
+      url("/assets/figma/portada.jpg") center/cover no-repeat;
+    filter: brightness(1.25) contrast(1.05) saturate(1.05);
+    z-index: -1;
+  }
+
+  &__inner {
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+    padding: 80px clamp(24px, 6vw, 96px) 60px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  &__content {
+    max-width: 560px;
+    margin-right: auto;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  &__title {
+    font-size: clamp(3.25rem, 9vw, 6rem);
+    line-height: 0.9;
+    margin: 0;
+
+    span {
+      display: block;
+    }
+  }
+
+  &__divider {
+    display: block;
+    width: 80px;
+    height: 2px;
+    background: var(--asr-red);
+  }
+
+  &__subtitle {
+    font-family: var(--asr-font-display);
+    font-weight: 600;
+    font-size: 1.25rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  &__copy {
+    max-width: 440px;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  &__cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
+  &__strip {
+    background: rgba(10, 10, 10, 0.85);
+    border-top: 1px solid var(--asr-border);
+    border-bottom: 1px solid var(--asr-red);
+  }
+
+  &__strip-inner {
+    @include container;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+    padding-block: 22px;
+  }
+
+  &__chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--asr-text);
+    font-family: var(--asr-font-display);
+    font-weight: 500;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    ui-icon {
+      color: var(--asr-red);
+    }
+  }
+
+  @include breakpoint(md) {
+    min-height: 70vh;
+
+    &__inner {
+      padding-block: 60px 40px;
+    }
+
+    &__strip-inner {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    &__chip {
+      font-size: 0.72rem;
+      gap: 8px;
+    }
+  }
+
+  @include breakpoint(sm) {
+    min-height: auto;
+    padding-bottom: 0;
+
+    &__inner {
+      padding-block: 40px 32px;
+    }
+
+    &__content {
+      gap: 18px;
+    }
+
+    &__cta {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+      --ui-button-min-width: 0;
+
+      ui-button {
+        display: block;
+      }
+    }
+
+    &__strip-inner {
+      grid-template-columns: repeat(2, 1fr);
+      padding-block: 16px;
+    }
+
+    &__chip {
+      font-size: 0.7rem;
+    }
+  }
+}

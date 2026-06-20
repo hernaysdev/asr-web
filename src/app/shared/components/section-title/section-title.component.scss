@@ -1,0 +1,36 @@
+.section-title {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &--center {
+    align-items: center;
+    text-align: center;
+  }
+
+  &__eyebrow {
+    color: var(--asr-red-text);
+    font-family: var(--asr-font-display);
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  &__heading {
+    font-family: var(--asr-font-display);
+    font-style: italic;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 0.95;
+    margin: 0;
+  }
+
+  &__divider {
+    display: block;
+    width: 64px;
+    height: 2px;
+    background: var(--asr-red);
+  }
+}

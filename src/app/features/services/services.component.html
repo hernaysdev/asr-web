@@ -1,0 +1,28 @@
+<section id="services" class="services">
+  <div class="services__inner">
+    <div class="services__intro">
+      <asr-section-title
+        eyebrow="Our Services"
+        leading="Performance Built"
+        accent="Right."
+      ></asr-section-title>
+      <p class="services__copy text-muted">
+        From dyno tuning to custom fabrication, we deliver high quality performance solutions tailored to your goals.
+      </p>
+      <div class="services__cta">
+        <ui-button variant="outline" (click)="scheduleAppointment()">Schedule an Appointment</ui-button>
+      </div>
+    </div>
+
+    <div class="services__grid">
+      <article class="service-card" *ngFor="let svc of content.services">
+        <div class="service-card__icon">
+          <ui-icon [name]="svc.icon" [size]="56"></ui-icon>
+        </div>
+        <h3 class="service-card__title">{{ svc.title }}</h3>
+        <span class="service-card__divider"></span>
+        <p class="service-card__copy text-muted">{{ svc.description }}</p>
+      </article>
+    </div>
+  </div>
+</section>

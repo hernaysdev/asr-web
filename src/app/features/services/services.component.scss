@@ -1,0 +1,108 @@
+@use "../../../styles/mixins" as *;
+
+.services {
+  background:
+    linear-gradient(0deg, rgba(10, 10, 10, 0.92), rgba(10, 10, 10, 0.92)),
+    url("/assets/figma/IMG-20260514-WA0014.png") center/cover no-repeat;
+  @include section-y;
+
+  &__inner {
+    @include container;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 56px;
+    align-items: start;
+  }
+
+  &__intro {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    position: sticky;
+    top: 120px;
+  }
+
+  &__copy {
+    max-width: 360px;
+  }
+
+  &__cta {
+    margin-top: 8px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  @include breakpoint(lg) {
+    &__inner {
+      grid-template-columns: 1fr;
+    }
+    &__intro {
+      position: static;
+    }
+  }
+
+  @include breakpoint(md) {
+    &__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @include breakpoint(sm) {
+    padding-block: var(--asr-section-y-sm);
+
+    &__inner {
+      gap: 32px;
+    }
+
+    &__grid {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+  }
+}
+
+.service-card {
+  background: rgba(20, 20, 20, 0.95);
+  border: 1px solid var(--asr-border);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+  transition: border-color var(--asr-transition), transform var(--asr-transition);
+
+  &:hover {
+    border-color: var(--asr-red);
+    transform: translateY(-2px);
+  }
+
+  &__icon {
+    color: var(--asr-red);
+    margin-bottom: 8px;
+  }
+
+  &__title {
+    font-family: var(--asr-font-display);
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  &__divider {
+    width: 32px;
+    height: 2px;
+    background: var(--asr-red);
+  }
+
+  &__copy {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+}

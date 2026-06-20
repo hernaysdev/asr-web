@@ -1,0 +1,97 @@
+<section id="contact" class="contact">
+  <div class="contact__inner">
+    <div class="contact__left">
+      <asr-section-title eyebrow="Contact" leading="Get in Touch" accent="With Us"></asr-section-title>
+
+      <ul class="contact__info">
+        <li>
+          <ui-icon name="pin" [size]="18"></ui-icon>
+          <div>
+            <strong>Address</strong>
+            <a
+              [href]="content.contact.mapDirections"
+              target="_blank"
+              rel="noopener"
+              class="text-muted"
+            >{{ content.contact.address }}</a>
+          </div>
+        </li>
+        <li>
+          <ui-icon name="phone" [size]="18"></ui-icon>
+          <div>
+            <strong>Phone</strong>
+            <a [href]="'tel:' + content.contact.phone" class="text-muted">{{ content.contact.phone }}</a>
+          </div>
+        </li>
+        <li>
+          <ui-icon name="email" [size]="18"></ui-icon>
+          <div>
+            <strong>Email</strong>
+            <a [href]="'mailto:' + content.contact.email" class="text-muted">{{ content.contact.email }}</a>
+          </div>
+        </li>
+      </ul>
+
+      <form class="contact__form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <div class="contact__row">
+          <label class="field">
+            <span class="field__label">First Name</span>
+            <input type="text" formControlName="firstName" placeholder="First Name" aria-label="First Name" [class.is-invalid]="isInvalid('firstName')" />
+          </label>
+          <label class="field">
+            <span class="field__label">Last Name</span>
+            <input type="text" formControlName="lastName" placeholder="Last Name" aria-label="Last Name" [class.is-invalid]="isInvalid('lastName')" />
+          </label>
+        </div>
+        <div class="contact__row">
+          <label class="field">
+            <span class="field__label">Email</span>
+            <input type="email" formControlName="email" placeholder="Email" aria-label="Email" [class.is-invalid]="isInvalid('email')" />
+          </label>
+          <label class="field">
+            <span class="field__label">Phone</span>
+            <input type="tel" formControlName="phone" placeholder="Phone" aria-label="Phone" />
+          </label>
+        </div>
+        <div class="contact__row">
+          <label class="field">
+            <span class="field__label">Vehicle Make</span>
+            <input type="text" formControlName="vehicleMake" placeholder="Vehicle Make" aria-label="Vehicle Make" />
+          </label>
+          <label class="field">
+            <span class="field__label">Vehicle Year</span>
+            <input type="text" formControlName="vehicleYear" placeholder="Vehicle Year" aria-label="Vehicle Year" />
+          </label>
+        </div>
+        <label class="field">
+          <span class="field__label">Model</span>
+          <input type="text" formControlName="model" placeholder="Model" aria-label="Model" />
+        </label>
+        <label class="field">
+          <span class="field__label">Message</span>
+          <textarea formControlName="message" placeholder="Message" aria-label="Message" rows="4" [class.is-invalid]="isInvalid('message')"></textarea>
+        </label>
+
+        <ui-button type="submit" variant="primary" [block]="true" [disabled]="status() === 'sending'">
+          {{ status() === 'sending' ? 'Sending...' : 'Submit' }}
+        </ui-button>
+
+        <p class="contact__feedback contact__feedback--ok" *ngIf="status() === 'success'">
+          Thanks! We received your message and will get back to you soon.
+        </p>
+        <p class="contact__feedback contact__feedback--err" *ngIf="status() === 'error'">
+          Something went wrong sending your message. Please try again or call us.
+        </p>
+      </form>
+    </div>
+
+    <div class="contact__map">
+      <iframe
+        [src]="mapUrl"
+        title="ASR Performance & Tuning location"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+  </div>
+</section>

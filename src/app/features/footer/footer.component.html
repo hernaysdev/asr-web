@@ -1,0 +1,61 @@
+<footer class="footer">
+  <div class="footer__line"></div>
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <img
+        class="footer__logo"
+        src="assets/asr-logo.jpg"
+        alt="ASR Performance & Tuning LLC"
+      />
+    </div>
+
+    <div class="footer__column">
+      <h3>Hours</h3>
+      <ul>
+        <li *ngFor="let h of content.contact.hours">
+          <strong>{{ h.day }}</strong>
+          <span class="text-muted">{{ h.value }}</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer__column">
+      <h3>Address</h3>
+      <a
+        class="footer__link"
+        [href]="content.contact.mapDirections"
+        target="_blank"
+        rel="noopener"
+      >
+        <ui-icon name="pin" [size]="16"></ui-icon>
+        <span>{{ content.contact.address }}</span>
+      </a>
+    </div>
+
+    <div class="footer__column">
+      <h3>Contact</h3>
+      <a class="footer__link" [href]="'tel:' + content.contact.phone">
+        <ui-icon name="phone" [size]="16"></ui-icon>
+        <span>{{ content.contact.phone }}</span>
+      </a>
+      <a class="footer__link" [href]="'mailto:' + content.contact.email">
+        <ui-icon name="email" [size]="16"></ui-icon>
+        <span>{{ content.contact.email }}</span>
+      </a>
+      <div class="footer__social">
+        <a [href]="content.contact.social.instagram" target="_blank" rel="noopener" aria-label="Instagram">
+          <ui-icon name="instagram" [size]="18"></ui-icon>
+        </a>
+        <a [href]="content.contact.social.facebook" target="_blank" rel="noopener" aria-label="Facebook">
+          <ui-icon name="facebook" [size]="18"></ui-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <span class="text-muted">&copy; {{ year }} ASR Performance &amp; Tuning LLC. All Rights Reserved.</span>
+    <nav class="footer__legal" aria-label="Legal">
+      <a routerLink="/terms">Privacy Policy | Terms &amp; Conditions</a>
+    </nav>
+  </div>
+</footer>
