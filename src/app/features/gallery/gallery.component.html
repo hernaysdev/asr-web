@@ -1,0 +1,71 @@
+<section id="gallery" class="gallery">
+  <div class="gallery__inner">
+    <div class="gallery__head">
+      <asr-section-title eyebrow="Gallery" leading="Our" accent="Work"></asr-section-title>
+      <p class="gallery__copy text-muted">
+        From performance upgrades to full builds, every project is done with precision, quality, and attention to detail.
+      </p>
+    </div>
+
+    <div
+      class="carousel"
+      tabindex="0"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Our work gallery"
+      (mouseenter)="onMouseEnter()"
+      (mouseleave)="onMouseLeave()"
+      (focusin)="onMouseEnter()"
+      (focusout)="onMouseLeave()"
+    >
+      <div class="carousel__viewport">
+        <div class="carousel__track" [style.transform]="'translateX(-' + current() * 100 + '%)'">
+          <div
+            class="carousel__slide"
+            *ngFor="let src of images; let i = index"
+            [style.background-image]="'url(' + src + ')'"
+            [attr.aria-hidden]="current() !== i"
+            [attr.aria-label]="'Slide ' + (i + 1) + ' of ' + images.length"
+          >
+            <img
+              [src]="src"
+              [alt]="'ASR build photo ' + (i + 1)"
+              [attr.loading]="i === 0 ? 'eager' : 'lazy'"
+              draggable="false"
+            />
+          </div>
+        </div>
+
+        <button
+          type="button"
+          class="carousel__nav carousel__nav--prev"
+          aria-label="Previous slide"
+          (click)="prev()"
+        >
+          <ui-icon name="arrow-right" [size]="22"></ui-icon>
+        </button>
+        <button
+          type="button"
+          class="carousel__nav carousel__nav--next"
+          aria-label="Next slide"
+          (click)="next()"
+        >
+          <ui-icon name="arrow-right" [size]="22"></ui-icon>
+        </button>
+      </div>
+
+      <ol class="carousel__dots" role="tablist" aria-label="Gallery slides">
+        <li *ngFor="let _ of images; let i = index">
+          <button
+            type="button"
+            role="tab"
+            [class.is-active]="current() === i"
+            [attr.aria-selected]="current() === i"
+            [attr.aria-label]="'Go to slide ' + (i + 1)"
+            (click)="goTo(i)"
+          ></button>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>

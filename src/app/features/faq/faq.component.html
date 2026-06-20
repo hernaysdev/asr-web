@@ -1,0 +1,29 @@
+<section id="faq" class="faq">
+  <div class="faq__inner">
+    <div class="faq__head">
+      <asr-section-title eyebrow="FAQ" leading="Frequently Asked" accent="Questions"></asr-section-title>
+      <p class="faq__intro text-muted">
+        Get answers to the most common questions about our services, process, and what to expect when working with ASR
+        Performance &amp; Tuning LLC.
+      </p>
+    </div>
+
+    <ul class="faq__list">
+      <li class="faq__item" *ngFor="let faq of content.faqs; let i = index" [class.is-open]="isOpen(i)">
+        <button
+          class="faq__trigger"
+          type="button"
+          [attr.aria-expanded]="isOpen(i)"
+          [attr.aria-controls]="'faq-panel-' + i"
+          (click)="toggle(i)"
+        >
+          <span>{{ faq.question }}</span>
+          <ui-icon [name]="isOpen(i) ? 'minus' : 'plus'" [size]="20"></ui-icon>
+        </button>
+        <div class="faq__panel" [id]="'faq-panel-' + i" [hidden]="!isOpen(i)">
+          <p>{{ faq.answer }}</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>

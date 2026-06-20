@@ -1,0 +1,115 @@
+@use "../../../styles/mixins" as *;
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10, 10, 10, 0.92);
+  backdrop-filter: blur(10px);
+
+  &__inner {
+    @include container;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    padding-block: 18px;
+  }
+
+  &__logo {
+    display: inline-flex;
+    align-items: center;
+
+    img {
+      display: block;
+      height: 48px;
+      width: auto;
+      max-width: 100%;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    gap: 36px;
+
+    a {
+      position: relative;
+      font-family: var(--asr-font-display);
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--asr-text);
+      transition: color var(--asr-transition);
+
+      &.is-active {
+        color: var(--asr-red);
+
+        &::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: -18px;
+          height: 2px;
+          background: var(--asr-red);
+        }
+      }
+
+      &:hover {
+        color: var(--asr-red);
+      }
+    }
+
+    @media (max-width: 900px) {
+      gap: 22px;
+
+      a {
+        font-size: 0.85rem;
+        letter-spacing: 0.12em;
+      }
+    }
+  }
+
+  &__social {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: var(--asr-text);
+
+    a:hover {
+      color: var(--asr-red);
+    }
+  }
+
+  &__divider {
+    width: 1px;
+    height: 18px;
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  &__line {
+    height: 1px;
+    background: var(--asr-red);
+    opacity: 0.7;
+  }
+
+  @include breakpoint(nav) {
+    &__inner {
+      gap: 16px;
+      padding-block: 14px;
+    }
+
+    &__nav {
+      display: none;
+    }
+
+    &__logo img {
+      height: 38px;
+    }
+
+    &__social {
+      gap: 12px;
+    }
+  }
+}

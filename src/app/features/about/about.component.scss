@@ -1,0 +1,109 @@
+@use "../../../styles/mixins" as *;
+
+.about {
+  background: var(--asr-bg);
+  @include section-y;
+
+  &__inner {
+    @include container;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  &__copy {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 520px;
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  &__values {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    background: rgba(20, 20, 20, 0.95);
+    border: 1px solid var(--asr-border);
+    padding: 24px;
+  }
+
+  &__media {
+    min-height: 540px;
+    background:
+      linear-gradient(180deg, rgba(10, 10, 10, 0.3), rgba(10, 10, 10, 0.6)),
+      url("/assets/figma/about.jpg") center/cover no-repeat;
+    border-radius: 0;
+  }
+
+  @include breakpoint(lg) {
+    &__inner {
+      grid-template-columns: 1fr;
+    }
+    &__media {
+      min-height: 340px;
+    }
+  }
+
+  @include breakpoint(md) {
+    &__values {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @include breakpoint(sm) {
+    padding-block: var(--asr-section-y-sm);
+
+    &__inner {
+      gap: 32px;
+    }
+
+    &__content {
+      gap: 24px;
+    }
+
+    &__values {
+      padding: 16px;
+      gap: 8px;
+    }
+
+    &__media {
+      min-height: 220px;
+    }
+  }
+}
+
+.value-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  padding: 12px;
+
+  &__icon {
+    color: var(--asr-red);
+  }
+
+  &__title {
+    font-family: var(--asr-font-display);
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  &__copy {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+}
