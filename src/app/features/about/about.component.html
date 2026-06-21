@@ -4,18 +4,7 @@
       <asr-section-title eyebrow="About" leading="About" accent="Us"></asr-section-title>
 
       <div class="about__copy text-muted">
-        <p>
-          At ASR Performance &amp; Tuning LLC, we are passionate about high-performance vehicles. Our mission is to deliver
-          top-quality automotive services with precision, honesty, and professionalism.
-        </p>
-        <p>
-          From dyno tuning and performance upgrades to fabrication, diagnostics, and electrical work, we use quality parts,
-          industry-leading equipment, and proven techniques to maximize performance and reliability.
-        </p>
-        <p>
-          We take pride in our clean, professional environment and our commitment to providing every customer with the best
-          possible experience and results.
-        </p>
+        <p *ngFor="let paragraph of content.about.paragraphs">{{ paragraph }}</p>
       </div>
 
       <div class="about__values">

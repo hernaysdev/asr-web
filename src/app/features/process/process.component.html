@@ -1,0 +1,39 @@
+<section class="process" [id]="process.id">
+  <div class="process__inner">
+    <asr-section-title
+      [eyebrow]="'Our Process'"
+      [leading]="process.titleTop"
+      [accent]="process.titleAccent"
+    ></asr-section-title>
+    <p class="process__subtitle text-muted">{{ process.subtitle }}</p>
+
+    <ol class="process__steps">
+      <li class="process__step" *ngFor="let step of process.steps">
+        <span class="process__num" aria-hidden="true">{{ step.number }}</span>
+        <div class="process__body">
+          <h3 class="process__title">{{ step.title }}</h3>
+          <p class="process__desc text-muted">{{ step.description }}</p>
+        </div>
+        <div
+          class="process__media"
+          role="img"
+          [attr.aria-label]="step.title"
+          [style.background-image]="'url(' + step.imageUrl + ')'"
+        ></div>
+      </li>
+    </ol>
+
+    <aside class="process__cta">
+      <div class="process__cta-icon" aria-hidden="true">
+        <ui-icon name="phone" [size]="28"></ui-icon>
+      </div>
+      <div class="process__cta-text">
+        <strong>{{ process.cta.text }}</strong>
+        <span class="text-muted">{{ process.cta.subtext }}</span>
+      </div>
+      <button type="button" class="process__cta-btn" (click)="scrollToTarget(process.cta.scrollTo)">
+        <ui-button variant="primary">{{ process.cta.buttonLabel }}</ui-button>
+      </button>
+    </aside>
+  </div>
+</section>

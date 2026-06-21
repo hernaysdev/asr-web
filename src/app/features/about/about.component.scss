@@ -12,6 +12,22 @@
     align-items: start;
   }
 
+  &__media {
+    min-height: 540px;
+    background:
+      linear-gradient(180deg, rgba(10, 10, 10, 0.3), rgba(10, 10, 10, 0.6)),
+      url("/assets/carrusel/gallery12.jpg") center/cover no-repeat;
+  }
+
+  @include breakpoint(lg) {
+    &__inner {
+      grid-template-columns: 1fr;
+    }
+    &__media {
+      min-height: 340px;
+    }
+  }
+
   &__content {
     display: flex;
     flex-direction: column;
@@ -36,23 +52,6 @@
     padding: 24px;
   }
 
-  &__media {
-    min-height: 540px;
-    background:
-      linear-gradient(180deg, rgba(10, 10, 10, 0.3), rgba(10, 10, 10, 0.6)),
-      url("/assets/figma/about.jpg") center/cover no-repeat;
-    border-radius: 0;
-  }
-
-  @include breakpoint(lg) {
-    &__inner {
-      grid-template-columns: 1fr;
-    }
-    &__media {
-      min-height: 340px;
-    }
-  }
-
   @include breakpoint(md) {
     &__values {
       grid-template-columns: repeat(2, 1fr);
@@ -62,10 +61,6 @@
   @include breakpoint(sm) {
     padding-block: var(--asr-section-y-sm);
 
-    &__inner {
-      gap: 32px;
-    }
-
     &__content {
       gap: 24px;
     }
@@ -73,10 +68,6 @@
     &__values {
       padding: 16px;
       gap: 8px;
-    }
-
-    &__media {
-      min-height: 220px;
     }
   }
 }

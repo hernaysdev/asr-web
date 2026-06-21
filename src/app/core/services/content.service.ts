@@ -4,6 +4,7 @@ import { SITE_CONFIG } from '../../config/config';
 import { Faq } from '../models/faq.model';
 import { NavLink } from '../models/nav-link.model';
 import { Service } from '../models/service.model';
+import { ProcessContent } from '../models/process-step.model';
 import { TermsContent } from '../models/terms.model';
 import { Value } from '../models/value.model';
 
@@ -11,8 +12,9 @@ import { Value } from '../models/value.model';
 export class ContentService {
   readonly navLinks: readonly NavLink[] = [
     { id: 'services', label: 'Services' },
-    { id: 'about', label: 'About' },
+    { id: 'process', label: 'Our Process' },
     { id: 'gallery', label: 'Gallery' },
+    { id: 'about', label: 'About' },
     { id: 'contact', label: 'Contact' },
   ];
 
@@ -74,20 +76,38 @@ export class ContentService {
 
   readonly faqs: readonly Faq[] = [
     {
-      question: 'Where are you located?',
-      answer: 'We are located at 10097 Patterson Park Rd, Ashland, VA 23005.',
+      question: 'Do I need an appointment?',
+      answer:
+        'Yes. We recommend scheduling an appointment to ensure we can properly inspect your vehicle and dedicate the necessary time to your project.',
     },
     {
-      question: 'What are your hours of operation?',
-      answer: 'Monday to Friday 9:30 AM – 6:30 PM, Saturday 10:30 AM – 3:30 PM, Sunday Closed.',
+      question: 'What types of vehicles do you work on?',
+      answer:
+        'We work on domestic, import, and performance vehicles, from daily drivers to fully built street and race cars.',
     },
     {
-      question: 'How much does it cost to fix or service my car?',
-      answer: 'Cost depends on the vehicle and service required. Contact us for a free estimate tailored to your needs.',
+      question: 'Do you offer Dyno Tuning?',
+      answer:
+        'Yes. We offer DynoJet dyno tuning services to optimize performance, drivability, and reliability.',
+    },
+    {
+      question: 'Can I bring my own parts?',
+      answer:
+        'Yes. Customer-supplied parts are accepted; however, warranty coverage cannot be provided on parts supplied by the customer.',
+    },
+    {
+      question: 'How much does it cost to service my vehicle?',
+      answer:
+        'Pricing varies depending on the vehicle and the services required. Contact us for a personalized estimate.',
+    },
+    {
+      question: 'What services do you offer?',
+      answer:
+        'We specialize in dyno tuning, engine builds, custom fabrication, diagnostics, electrical repair, performance upgrades, maintenance, and general automotive repair services.',
     },
   ];
 
-  readonly galleryImages: readonly string[] = Array.from({ length: 12 }, (_, i) =>
+  readonly galleryImages: readonly string[] = Array.from({ length: 11 }, (_, i) =>
     `/assets/carrusel/gallery${String(i + 1).padStart(2, '0')}.jpg`,
   );
 
@@ -99,6 +119,66 @@ export class ContentService {
     { icon: 'bolt', title: 'Electrical & Wiring' },
     { icon: 'diagnostics', title: 'Diagnostics' },
   ];
+
+  readonly about = {
+    paragraphs: [
+      'ASR Performance & Tuning LLC is a full-service performance shop specializing in dyno tuning, custom fabrication, engine builds, diagnostics, and electrical work.',
+      "Whether you're looking for a simple upgrade or a complete performance build, our team is committed to delivering quality workmanship, honest service, and reliable results every step of the way.",
+    ],
+  } as const;
+
+  readonly process: ProcessContent = {
+    id: 'process',
+    label: '// Our Process',
+    titleTop: 'Our',
+    titleAccent: 'Process',
+    subtitle: 'A clear process. Proven results.',
+    steps: [
+      {
+        number: '01',
+        title: 'Consultation',
+        description: 'We discuss your goals, budget, and vision for your vehicle.',
+        imageUrl: '/assets/figma/IMG-20260514-WA0014.png',
+      },
+      {
+        number: '02',
+        title: 'Inspection',
+        description: 'We inspect your vehicle and evaluate any existing issues.',
+        imageUrl: '/assets/figma/IMG-20260514-WA0015.png',
+      },
+      {
+        number: '03',
+        title: 'Build Plan',
+        description: 'We create a plan tailored to your power goals and performance needs.',
+        imageUrl: '/assets/figma/IMG-20260514-WA0016.png',
+      },
+      {
+        number: '04',
+        title: 'Installation / Fabrication',
+        description: 'Our team gets to work with precision and attention to detail.',
+        imageUrl: '/assets/figma/IMG-20260514-WA0017.png',
+      },
+      {
+        number: '05',
+        title: 'Dyno / Testing',
+        description: 'We tune, test, and verify performance to ensure everything is perfect.',
+        imageUrl: '/assets/figma/portada.jpg',
+      },
+      {
+        number: '06',
+        title: 'Final Review & Delivery',
+        description:
+          'We review the completed work, explain recommendations, and verify that the vehicle is ready for delivery.',
+        imageUrl: '/assets/figma/about.jpg',
+      },
+    ],
+    cta: {
+      text: 'Ready to get started?',
+      subtext: "Let's build something amazing.",
+      buttonLabel: 'Schedule an Appointment',
+      scrollTo: 'contact',
+    },
+  };
 
   readonly terms: TermsContent = {
     label: '// Terms & Conditions',
@@ -187,6 +267,134 @@ export class ContentService {
     },
     importantNotice:
       'By leaving a vehicle with ASR Performance & Tuning LLC, or by authorizing work in any form (in person, electronically, or through a third party), the customer automatically accepts these Terms and Conditions.',
+    fullTermsTitle: 'Full Terms & Conditions',
+    fullTermsSubtitle:
+      'The complete text of our Terms and Conditions. Please read carefully before authorizing any service.',
+    fullTerms: [
+      {
+        title: 'ASR Performance & Tuning LLC – Terms and Conditions',
+        intro:
+          'By requesting or authorizing any services from ASR Performance & Tuning LLC ("the shop"), the customer acknowledges and agrees to the following terms and conditions, regardless of whether the vehicle is delivered in person or by a third party.',
+        clauses: [
+          {
+            number: '1',
+            title: 'Off-Road Use Only',
+            body: 'All performance modifications, tuning services, and aftermarket components installed by ASR Performance & Tuning LLC are intended for off-road use only. The customer assumes full responsibility for how the vehicle is operated after service. The shop is not responsible for accidents, damages, or legal violations resulting from the use of modified vehicles on public roads.',
+          },
+          {
+            number: '2',
+            title: 'Scope of Work',
+            body: 'The shop is responsible only for the services specifically described in the invoice or estimate and is not responsible for pre-existing conditions, unrelated mechanical issues, or failures in other vehicle systems that were not part of the approved work.',
+          },
+          {
+            number: '3',
+            title: 'Vehicle Storage and Parking',
+            body: "Vehicles stored outside the shop premises are left at the owner's risk. The shop is not responsible for theft, vandalism, weather damage, or incidents occurring while the vehicle is parked outside the shop.",
+          },
+          {
+            number: '4',
+            title: 'Personal Belongings',
+            body: 'Customers are responsible for removing all personal belongings from their vehicles prior to service. The shop is not responsible for lost, stolen, or damaged items left inside the vehicle.',
+          },
+          {
+            number: '5',
+            title: 'Dyno Testing Disclaimer',
+            body: 'Dyno testing and performance tuning place additional stress on engine and drivetrain components. The customer acknowledges these risks and agrees that the shop is not responsible for engine, transmission, or drivetrain failures that occur during or after dyno testing if the vehicle was not in proper mechanical condition. The shop may estimate achievable power levels; however, the shop is not responsible if the engine cannot safely reach or sustain the power levels requested by the customer.',
+          },
+          {
+            number: '6',
+            title: 'Customer-Supplied Parts',
+            body: 'If a customer supplies their own parts, the shop provides no warranty on those parts. The shop is not responsible for defects, malfunctions, or failures related to customer-supplied components. Labor required to replace defective parts will be charged accordingly.',
+          },
+          {
+            number: '7',
+            title: 'Third-Party Parts Warranty',
+            body: 'For parts purchased through the shop from third-party manufacturers or suppliers, the warranty is provided solely by the manufacturer. The shop may assist the customer with warranty claims but is not responsible for product defects. Labor for replacement of warranty parts is not included unless otherwise stated.',
+          },
+          {
+            number: '8',
+            title: 'ASR Parts Warranty',
+            body: 'If the shop sells a product under its own warranty, the warranty covers the part itself only, unless otherwise stated in writing. Labor for removal or reinstallation is not included unless specified.',
+          },
+          {
+            number: '9',
+            title: 'Off-Road Liability Release',
+            body: 'The customer releases ASR Performance & Tuning LLC from any liability related to the use of modified vehicles on public roads.',
+          },
+          {
+            number: '10',
+            title: 'Limitation of Liability',
+            body: 'The customer agrees not to hold the shop liable for damages, losses, or claims arising from services performed, aftermarket modifications, or the use of the vehicle after completion of the work.',
+          },
+          {
+            number: '11',
+            title: 'Estimates',
+            body: 'All estimates are approximate. Final charges may vary depending on actual labor required, additional parts, fabrication, or unforeseen issues discovered during the repair process.',
+          },
+          {
+            number: '12',
+            title: 'Performance Modification Risk',
+            body: 'The customer acknowledges that performance modifications, tuning, and aftermarket components increase stress on engine, drivetrain, and vehicle systems. The shop is not responsible for failures caused by increased power levels, racing use, or aggressive driving.',
+          },
+          {
+            number: '13',
+            title: 'Additional Labor Authorization',
+            body: 'During the course of service, additional issues may be discovered that require further labor or parts. The shop will make reasonable efforts to contact the customer for approval before proceeding.',
+          },
+        ],
+        importantNotice:
+          'By leaving a vehicle with ASR Performance & Tuning LLC ("the shop"), or by authorizing work in any form (in person, electronically, or through a third party), the customer automatically accepts these Terms and Conditions.',
+      },
+      {
+        title: 'Engine, Transmission & Machine Shop – Terms and Conditions',
+        intro:
+          'By requesting or authorizing any services from ASR Performance & Tuning LLC ("the shop"), the customer acknowledges and agrees to the following terms and conditions, regardless of whether the vehicle is delivered in person or by a third party.',
+        clauses: [
+          {
+            number: '14',
+            title: 'Customer-Supplied Engine or Transmission',
+            body: 'If a customer provides an engine, transmission, or drivetrain component for installation, the shop provides no warranty on that component.',
+          },
+          {
+            number: '15',
+            title: 'Engine & Transmission Rebuild Warranty',
+            body: 'ASR Performance & Tuning LLC provides a limited warranty on engine and transmission rebuilds performed by our shop. This warranty covers workmanship related to the rebuilding service. The warranty applies only to components repaired or replaced during the rebuild and only when installation is performed by the shop. Failures caused by racing, improper tuning, overheating, oil starvation, lack of maintenance, or failure of unrelated components are not covered.',
+          },
+          {
+            number: '16',
+            title: 'Customer-Installed Engine or Transmission',
+            body: 'If a rebuilt engine or transmission is installed by a third party, ASR Performance & Tuning LLC cannot guarantee proper installation and assumes no responsibility for failures resulting from improper installation.',
+          },
+          {
+            number: '17',
+            title: 'Machine Shop Services',
+            body: 'Machine shop services provided by the shop are limited to machining operations such as resurfacing, boring, honing, balancing, or cleaning. No warranty is expressed or implied on machine work once the component has been assembled or installed.',
+          },
+          {
+            number: '18',
+            title: 'Warranty Void Conditions',
+            body: 'Any warranty becomes void if the vehicle or component is subjected to racing, abuse, overheating, detonation, improper tuning, lack of maintenance, or installation of incompatible parts.',
+          },
+          {
+            number: '19',
+            title: 'Warranty Inspection',
+            body: 'When requesting warranty service for an engine, transmission, wiring, or related components, the vehicle or component will be inspected to determine the cause of the issue. If the problem is determined to be due to negligence or workmanship errors by the shop, warranty service will be provided according to these terms. If the issue is unrelated to the work performed by the shop, the customer will be responsible for all inspection and diagnostic costs.',
+          },
+          {
+            number: '20',
+            title: 'Labor Warranty',
+            body: 'Labor warranty is valid for 6 months from the completion date of service, unless otherwise stated. Certain conditions apply as described in these terms.',
+          },
+          {
+            number: '21',
+            title: 'Payment Authorization & Chargebacks',
+            body: 'By authorizing repairs or services, the customer agrees to pay all charges related to labor, parts, fabrication, diagnostics, and tuning. Any attempt to dispute or reverse charges (chargebacks) after services have been completed may result in legal action.',
+          },
+        ],
+        importantNotice:
+          'By leaving a vehicle with ASR Performance & Tuning LLC ("the shop"), or by authorizing work in any form (in person, electronically, or through a third party), the customer automatically accepts these Terms and Conditions.',
+      },
+    ],
   };
 
   readonly business = SITE_CONFIG.business;
@@ -205,5 +413,10 @@ export class ContentService {
     mapDirections: SITE_CONFIG.map.directionsUrl,
     hours: SITE_CONFIG.hours,
     social: SITE_CONFIG.social,
+    intro: {
+      title: 'Ready to Start Your Project?',
+      body:
+        'Whether you need dyno tuning, diagnostics, fabrication, or a complete build, our team is ready to help. Contact us today to discuss your goals.',
+    },
   };
 }
