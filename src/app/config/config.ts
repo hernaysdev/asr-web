@@ -37,7 +37,7 @@ export const SITE_CONFIG = {
 
   hours: [
     { day: 'Monday - Friday', value: '9:30 AM - 6:30 PM' },
-    { day: 'Saturday', value: '10:30 AM - 3:30 PM' },
+    { day: 'Saturday', value: '10:30 AM - 2:30 PM' },
     { day: 'Sunday', value: 'Closed' },
   ],
 

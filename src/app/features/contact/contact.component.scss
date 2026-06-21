@@ -18,6 +18,28 @@
     gap: 24px;
   }
 
+  &__intro {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__intro-title {
+    margin: 0;
+    font-family: var(--asr-font-display);
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: 0.04em;
+    color: var(--asr-text);
+  }
+
+  &__intro-body {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    max-width: 540px;
+  }
+
   &__info {
     list-style: none;
     margin: 0;

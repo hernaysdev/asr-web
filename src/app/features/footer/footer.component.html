@@ -43,11 +43,25 @@
         <span>{{ content.contact.email }}</span>
       </a>
       <div class="footer__social">
-        <a [href]="content.contact.social.instagram" target="_blank" rel="noopener" aria-label="Instagram">
+        <a
+          class="footer__instagram"
+          [href]="content.contact.social.instagram"
+          target="_blank"
+          rel="noopener"
+          aria-label="Follow us on Instagram"
+        >
           <ui-icon name="instagram" [size]="18"></ui-icon>
+          <span>Follow us</span>
         </a>
-        <a [href]="content.contact.social.facebook" target="_blank" rel="noopener" aria-label="Facebook">
+        <a
+          class="footer__facebook"
+          [href]="content.contact.social.facebook"
+          target="_blank"
+          rel="noopener"
+          aria-label="Follow us on Facebook"
+        >
           <ui-icon name="facebook" [size]="18"></ui-icon>
+          <span>Follow us</span>
         </a>
       </div>
     </div>

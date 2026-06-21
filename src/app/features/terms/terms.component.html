@@ -12,42 +12,30 @@
   </div>
 </section>
 
-<section class="terms-overview">
-  <div class="terms-overview__inner">
-    <header class="terms-overview__header">
-      <h2 class="terms-overview__title display">{{ terms.overviewTitle }}</h2>
-      <span class="terms-overview__underline" aria-hidden="true"></span>
-      <p class="terms-overview__subtitle text-muted">{{ terms.overviewSubtitle }}</p>
+
+
+<section class="terms-full">
+  <div class="terms-full__inner">
+    <header class="terms-full__header">
+      <h2 class="terms-full__title display">{{ terms.fullTermsTitle }}</h2>
+      <span class="terms-full__underline" aria-hidden="true"></span>
+      <p class="terms-full__subtitle text-muted">{{ terms.fullTermsSubtitle }}</p>
     </header>
 
-    <ul class="terms-grid">
-      <li class="terms-card" *ngFor="let item of terms.items">
-        <div class="terms-card__icon">
-          <ui-icon [name]="item.icon" [size]="28"></ui-icon>
-        </div>
-        <div class="terms-card__body">
-          <h3 class="terms-card__title">
-            <span class="terms-card__num">{{ item.number }}.</span> {{ item.title }}
-          </h3>
-          <p class="terms-card__desc text-muted">{{ item.description }}</p>
-        </div>
-      </li>
-    </ul>
+    <article class="terms-full__section" *ngFor="let section of terms.fullTerms">
+      <h3 class="terms-full__section-title">{{ section.title }}</h3>
+      <p class="terms-full__section-intro text-muted">{{ section.intro }}</p>
 
-    <div class="terms-cta">
-      <div class="terms-cta__icon" aria-hidden="true">
-        <ui-icon name="file-text" [size]="32"></ui-icon>
-      </div>
-      <p class="terms-cta__text">{{ terms.cta.text }}</p>
-      <a
-        class="terms-cta__button"
-        [href]="terms.cta.href"
-        target="_blank"
-        rel="noopener"
-      >
-        <ui-button variant="primary">{{ terms.cta.buttonLabel }}</ui-button>
-      </a>
-    </div>
+      <ol class="terms-full__clauses">
+        <li class="terms-full__clause" *ngFor="let clause of section.clauses">
+          <h4 class="terms-full__clause-title">
+            <span class="terms-full__clause-num">{{ clause.number }}.</span>
+            {{ clause.title }}
+          </h4>
+          <p class="terms-full__clause-body text-muted">{{ clause.body }}</p>
+        </li>
+      </ol>
+    </article>
 
     <aside class="terms-notice" role="note">
       <div class="terms-notice__icon" aria-hidden="true">

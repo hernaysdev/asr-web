@@ -5,6 +5,7 @@ import { ContactComponent } from '../contact/contact.component';
 import { FaqComponent } from '../faq/faq.component';
 import { GalleryComponent } from '../gallery/gallery.component';
 import { HeroComponent } from '../hero/hero.component';
+import { ProcessComponent } from '../process/process.component';
 import { ServicesComponent } from '../services/services.component';
 
 @Component({
@@ -14,6 +15,7 @@ import { ServicesComponent } from '../services/services.component';
   imports: [
     HeroComponent,
     ServicesComponent,
+    ProcessComponent,
     AboutComponent,
     GalleryComponent,
     FaqComponent,
@@ -22,8 +24,9 @@ import { ServicesComponent } from '../services/services.component';
   template: `
     <asr-hero></asr-hero>
     <asr-services></asr-services>
-    <asr-about></asr-about>
+    <asr-process></asr-process>
     <asr-gallery></asr-gallery>
+    <asr-about></asr-about>
     <asr-faq></asr-faq>
     <asr-contact></asr-contact>
   `,
