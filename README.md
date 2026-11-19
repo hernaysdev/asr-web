@@ -1,27 +1,42 @@
-# AsrWeb
+# ASR Performance & Tuning 🏁
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
+**🌐 [asrperformanceva.com](https://asrperformanceva.com)**
 
-## Development server
+![ASR Performance](docs/captura.jpg)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Sitio web one-page para **ASR Performance & Tuning LLC**, un taller de preparación de autos en Ashland, Virginia (EE.UU.): dyno tuning, upgrades de rendimiento, fabricación, armado de motores, sistema eléctrico y diagnóstico.
 
-## Code scaffolding
+## Qué tiene
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Hero, servicios, proceso de trabajo, galería, preguntas frecuentes y contacto.
+- **Formulario de contacto** con validaciones (Reactive Forms) que envía por EmailJS.
+- Diseño propio desde Figma, **sin librerías de UI**: SCSS con design tokens en variables CSS.
+- Responsivo y optimizado para SEO.
 
-## Build
+## Arquitectura
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Angular 16 con **standalone components**, `OnPush` y **Signals**, organizado por principios SOLID:
 
-## Running unit tests
+```
+src/app/
+├── core/       # servicios, modelos y tokens de inyección (ContentService, EmailService…)
+├── shared/     # componentes reutilizables
+└── sections/   # cada sección de la página
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Stack
 
-## Running end-to-end tests
+![Angular](https://img.shields.io/badge/Angular_16-DD0031?logo=angular&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+![SCSS](https://img.shields.io/badge/SCSS-CC6699?logo=sass&logoColor=white)
+![EmailJS](https://img.shields.io/badge/EmailJS-FF6C37)
+![Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?logo=cloudflare&logoColor=white)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Correr en local
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+npm ci
+npm start        # http://localhost:4200
+npm test         # Karma + Jasmine
+npm run build    # dist/asr-web
+```
