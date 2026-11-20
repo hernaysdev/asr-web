@@ -1,0 +1,67 @@
+name: CI y despliegue
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Build de producción
+        run: npx ng build --configuration production
+      - name: El build trae la app
+        run: grep -q '<app-root' dist/asr-web/index.html
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sitio
+          path: dist/asr-web/
+          retention-days: 7
+
+  desplegar:
+    name: Desplegar a asrperformanceva.com
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    concurrency:
+      group: produccion
+      cancel-in-progress: false
+    environment:
+      name: produccion
+      url: https://asrperformanceva.com
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: sitio
+          path: sitio
+      - name: Llave de despliegue
+        env:
+          LLAVE: ${{ secrets.CAJA_DEPLOY_KEY }}
+        run: |
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$LLAVE" > ~/.ssh/caja
+          chmod 600 ~/.ssh/caja
+          echo "13.140.40.51 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDDVKgimyZBIATW2o/Z7nPdD+RTyrbZ5oUZd3pQ5RX3F" > ~/.ssh/known_hosts
+      - name: Enviar a la caja
+        # La llave solo puede ejecutar /usr/local/bin/desplegar-asr en la caja:
+        # cambia el sitio, reinicia y verifica; si no responde, vuelve atrás solo.
+        run: |
+          tar czf - -C sitio . \
+            | ssh -i ~/.ssh/caja -o BatchMode=yes -o IdentitiesOnly=yes webs@13.140.40.51 "$GITHUB_SHA"
+      - name: Verificar desde afuera
+        run: |
+          sleep 3
+          curl -fsS https://asrperformanceva.com/ | grep -q '<app-root'
+      - name: Borrar la llave
+        if: always()
+        run: rm -f ~/.ssh/caja
