@@ -89,3 +89,25 @@ Fuente única en `src/styles/_tokens.scss`. Cambios de tema/branding se hacen ah
 1. `npm start` y abrir `http://localhost:4200`
 2. Comparar lado a lado con las imágenes en `src/assets/figma/`
 3. Resolución de referencia: 1280px. Responsive parte de ahí (breakpoints en `_mixins.scss`: sm=640, md=900, lg=1180)
+
+## 🚀 Despliegue: push a `main` = PRODUCCIÓN (pipeline automático desde 2026-11-19)
+
+**No hay ambiente intermedio.** Cada push a `main` corre GitHub Actions (`.github/workflows/ci.yml`) y, si las revisiones pasan, **publica directo en producción** sin que nadie apriete nada (funciona aunque la Mac mini esté apagada).
+
+Reglas para cualquier agente o sesión:
+
+1. **Push a `main` solo con el OK del user** y con todo verificado en local (build/tests). Pushear = desplegar.
+2. **Para algo sin terminar: rama + PR.** En un PR el pipeline corre las revisiones pero **no despliega**.
+3. **No desplegar a mano ni editar en el servidor** (caja `13.140.40.51`, usuario `webs`). La caja solo acepta lo que llega por el pipeline; un cambio hecho allá se pisa o frena el siguiente despliegue.
+4. **Después de pushear, verificar** que la corrida termine en verde (pestaña *Actions* del repo) y que el sitio responda. Si el sitio no responde tras reiniciar, la caja **vuelve sola a la versión anterior** y la corrida queda en rojo: leer el log antes de reintentar.
+5. **El `.env` de producción vive solo en la caja** y el despliegue nunca lo toca. No commitear `.env` ni secretos.
+6. **Commits sin atribución a Claude** (nada de `Co-Authored-By: Claude` ni "Generated with Claude Code"), autor `hernaysdev <hernays.dev@gmail.com>`.
+7. La llave de despliegue es el secreto `CAJA_DEPLOY_KEY` del repo y en la caja solo puede ejecutar el script de despliegue de este sitio (forced command). No cambiar el workflow para que haga otra cosa por ssh: no va a poder.
+
+### Cadena de este repo
+
+push a `main` → `ng build --configuration production` (Node 18) → el `dist/asr-web` va a la caja → `/usr/local/bin/desplegar-asr`: cambia el sitio entero, reinicia pm2 `asr-web` y verifica. Producción = **asrperformanceva.com**.
+
+- `npm test` NO corre en el pipeline: los specs son los de fábrica de Angular y fallan. Si se escriben tests reales, agregarlos al workflow.
+- `asr.dubenails.com` es el sitio de PRUEBAS en la Mac mini; no lo toca el pipeline.
+- El checkout git de la caja no es la verdad de lo publicado: lo es `.desplegado` dentro del sitio (commit desplegado).
